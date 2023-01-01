@@ -103,7 +103,6 @@ class Program {
 		if (typeof(this._commands[name]) === undefined) {
 			throw new Error('Invalid command name: '+name);
 		}
-
 		let commandResults = await this._commands[name].execute(args, options);
 		this._prog.fatalError = this._fatalErrorCatcher;
 		return commandResults;

@@ -3,10 +3,10 @@ const path = require('path');
 const resources = require(path.join(__dirname, '../../includes/resources.js'));
 
 try {
-    require.resolve("mongoose");
-} catch(e) {
-    console.error("Mongoose is not found. Install it in order to use mongodb models in lovacli. Run: npm install mongoose --save");
-    process.exit(e.code);
+	require.resolve("mongoose");
+} catch (e) {
+	console.error("Mongoose is not found. Install it in order to use mongodb models in lovacli. Run: npm install mongoose --save");
+	process.exit(e.code);
 }
 
 const mongoose = require('mongoose');
@@ -34,10 +34,10 @@ class MongoDBInitilizer {
 
 		let db = {};
 
-	    let options = { 
-	    	useNewUrlParser: true,
-				useUnifiedTopology: true
-	    };
+		let options = {
+			useNewUrlParser: true,
+			useUnifiedTopology: true
+		};
 
 		this.logger.debug('Creating connection to MongoDB');
 
@@ -48,7 +48,7 @@ class MongoDBInitilizer {
 		let modelPaths = await resources.loadModelsPaths(this.config.paths.models);
 
 		let that = this;
-		modelPaths.forEach(function(path) {
+		modelPaths.forEach(function (path) {
 			let inc = null;
 			try {
 				let model = require(path);
@@ -59,8 +59,8 @@ class MongoDBInitilizer {
 				} else {
 					throw 'modelName and model missed';
 				}
-			} catch(e) {
-				that.logger.error("Invalid mongoose model: "+path+" | ", e);
+			} catch (e) {
+				that.logger.error("Invalid mongoose model: " + path + " | ", e);
 			}
 		});
 
